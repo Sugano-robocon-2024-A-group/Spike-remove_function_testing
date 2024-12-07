@@ -8,9 +8,9 @@ const uint8_t motor_dir1[4] = {18, 25, 22, 32};
 const uint8_t motor_dir2[4] = {19, 14, 23, 33};
 
 // PID制御のゲイン
-const float kp[4] = {0.0, 13.1, 0.0, 0.0};//(0,1,2,3)  40  0.2  4,0.2 でControlの値が30
+const float kp[4] = {0.0, 13.0, 0.0, 0.0};//(0,1,2,3)  40  0.2  4,0.2 でControlの値が30
 const float ki[4] = {0.0, 0.001, 0.0, 0.0};
-const float kd[4] = {0.0, 10.0, 0.0, 0.0};//
+const float kd[4] = {0.0, 11.0, 0.0, 0.0};//
 
 // PID制御のゲイン
 /*
@@ -71,7 +71,7 @@ float pidCompute(int index, float target, float current) {
     //ここで整数にする。
     //int output_seisuu=output;
     
-    return constrain(output, -250, 250);
+    return constrain(output, -150, 150);
 }
 
 void driveMotor(int index, float controlSignal) {

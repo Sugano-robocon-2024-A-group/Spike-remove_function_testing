@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-constexpr int NUM_SAMPLES = 10; // 過去のサンプル数
+constexpr int NUM_SAMPLES = 5; // 過去のサンプル数
 
 // 関数プロトタイプ
 float calculateMedian(int values[], int size);

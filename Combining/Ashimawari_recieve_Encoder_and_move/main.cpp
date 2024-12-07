@@ -77,6 +77,7 @@ void loop()
   //receivePacket(id, data, length, *encoderCount);
 
   int packetSize = CAN.parsePacket();
+  int filteredValue[4];
   Serial.print(packetSize);
   //Serial.printf("\n");
   //Serial.print(encoderCount[1]);//デバッグ用
@@ -86,18 +87,18 @@ if(receivePacket){
   // CANメッセージを受信
     Serial.print("Data and Encoder Check\n");
     encoderCount[0]=data[0];
-    Serial.print(encoderCount[0]);
+   // Serial.print(encoderCount[0]);
     //Serial.print(" ");Serial.print(data[1]);
     encoderCount[1]=data[1];
     Serial.print(encoderCount[1]);
     //Serial.print(" ");Serial.print(data[2]); 
     encoderCount[2]=data[2];
-    Serial.print(encoderCount[2]);
+    //Serial.print(encoderCount[2]);
     //Serial.print(" ");Serial.print(data[3]);
     encoderCount[3]=data[3];
-    Serial.println(encoderCount[3]);
+  //  Serial.println(encoderCount[3]);
    // ここでSpike処理
-   int filteredValue[4];
+   
    for (int motor = 0; motor < 4; motor++) {
     filteredValue[motor] = removeSpike(encoderCount[motor], encoderSamples[motor], sampleIndices[motor], THRESHOLD);
         Serial.print("Motor ");
@@ -114,7 +115,7 @@ if(receivePacket){
   bool reachedTarget = true;
 
     for (int i = 0; i < 4; i++) {
-        float currentDistance = encoderCount[i] * distancePerCount;
+        float currentDistance = filteredValue[i] * distancePerCount;
         float controlSignal = pidCompute(i, targetDistance[i], currentDistance);
 
         Serial.printf("%f ",currentDistance);
