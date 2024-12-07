@@ -110,7 +110,7 @@ if(receivePacket){
    }
 
   //ここに「EncoderCount」を利用した動きの関数を入れる。
-/*
+
   bool reachedTarget = true;
 
     for (int i = 0; i < 4; i++) {
@@ -142,7 +142,7 @@ if(receivePacket){
         }
     }
 
-*/
+
   Serial.print("Done all movements");
   //delay(50);//delay(1)⇒delay(10)
   delay(50);
